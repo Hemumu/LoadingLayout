@@ -29,3 +29,5 @@ dependencies {
     compile project(':loadinglayout')
     compile 'com.zhy:base-adapter:3.0.3'
 }
+
+
