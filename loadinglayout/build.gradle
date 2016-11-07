@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.jfrog.bintray'
-//
-//
-//version = "0.0.1"
-//group = "com.helin.loadinglayout"
-//def siteUrl = 'https://github.com/yadav-rahul/TastyToast'
-//def gitUrl = 'https://github.com/yadav-rahul/TastyToast.git'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+
+version = "0.0.1"
+group = "com.helin.loadinglayout"
+def siteUrl = 'https://github.com/yadav-rahul/TastyToast'
+def gitUrl = 'https://github.com/yadav-rahul/TastyToast.git'
 
 android {
     compileSdkVersion 23
@@ -38,85 +38,84 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-//install {
-//    repositories.mavenInstaller {
-//        pom {
-//            project {
-//                packaging 'aar'// 打包的类型
-//                name 'LoadingLayout'//项目名称
-//                description '描述'// 项目的描述
-//                url siteUrl// 项目的主页
-//                // 配置开源证书信息
-//                licenses {
-//                    license {
-//                        name 'The Apache software License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    }
-//                }
-//                // 配置开发者信息
-//                developers {
-//                    developer {
-//                        id 'hemumu5'
-//                        name 'hemumu5'
-//                        email 'hemumu5gmail.com'
-//                    }
-//                }
-//                // 软件配置管理信息
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//                }
-//            }
-//        }
-//    }
-//}
-////生成对应的source.jar
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
-////生成java doc文件
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//    failOnError false
-//    // 忽略注释语法错误，如果用jdk1.8你的注释写的不规范就编译不过。
-//}
-////生成对应的javadoc.jar
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    classifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
-//
-//artifacts {
-//    archives javadocJar
-//    archives sourcesJar
-//}
-//// 读取配置的bintray用户的信息
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//// 配置bintray的信息
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//    configurations = ['archives']
-//    pkg {
-//        repo = "maven"//在bintray上边建立的仓库名字
-//        name = "LoadingLayout"//在bintray上Package名字
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        labels = ['android'] // 设置标签
-//        licenses = ["Apache-2.0"]
-//        publish = true
-//    }
-//}
-////javadoc生成的时候使用GBK编码，而项目使用的UTF-8编码。就需要加入以下代码
-//javadoc {
-//    options {
-//        encoding 'UTF-8'
-//        charSet 'UTF-8'
-//        author true
-//    }
-//}
-apply from: "https://raw.githubusercontent.com/xiaopansky/android-library-publish-to-jcenter/master/bintrayUpload.gradle"
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'// 打包的类型
+                name 'LoadingLayout'//项目名称
+                description '描述'// 项目的描述
+                url siteUrl// 项目的主页
+                // 配置开源证书信息
+                licenses {
+                    license {
+                        name 'The Apache software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                // 配置开发者信息
+                developers {
+                    developer {
+                        id 'hemumu5'
+                        name 'hemumu5'
+                        email 'hemumu5gmail.com'
+                    }
+                }
+                // 软件配置管理信息
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+//生成对应的source.jar
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+//生成java doc文件
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    failOnError false
+    // 忽略注释语法错误，如果用jdk1.8你的注释写的不规范就编译不过。
+}
+//生成对应的javadoc.jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+// 读取配置的bintray用户的信息
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+// 配置bintray的信息
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"//在bintray上边建立的仓库名字
+        name = "LoadingLayout"//在bintray上Package名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        labels = ['android'] // 设置标签
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+//javadoc生成的时候使用GBK编码，而项目使用的UTF-8编码。就需要加入以下代码
+javadoc {
+    options {
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+        author true
+    }
+}
